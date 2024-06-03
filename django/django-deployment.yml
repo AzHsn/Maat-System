@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      labels:
+        app: django-app
+    spec:
+      volumes:
+      - name: static-data
+        persistentVolumeClaim:
+          claimName: static-data-pvc
+      containers:
+      - name: django-app
+        image: docker.io/azhn/django-app:v3
+        envFrom:
+        - secretRef:
+            name: db-secrets
+        volumeMounts:
+        - name: static-data
+          mountPath: /app/static
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-svc
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: django-app
