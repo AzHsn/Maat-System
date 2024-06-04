@@ -16,16 +16,16 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker.io/azhn/nginx-django-proxy:v1.0
+        image: docker.io/azhn/nginx-django-proxy:v2
         ports:
         - containerPort: 80
         volumeMounts:
         - name: static-data
-          mountPath: /usr/share/nginx/html/static
+          mountPath: /usr/share/nginx/html/static  # Mount path for Django static files in NGINX container
       volumes:
       - name: static-data
         persistentVolumeClaim:
-          claimName: static-data-pvc
+          claimName: static-data-pvc  # Use the same PVC as Django application
 ---
 # nginx-service.yaml
 

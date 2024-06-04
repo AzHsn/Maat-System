@@ -1,16 +1,14 @@
-# NGINX Dockerfile
-
-# Use an official Nginx image as the base image
+# Use an official NGINX base image
 FROM nginx:alpine
 
-# Copy custom Nginx configuration
+# Copy NGINX configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Set work directory
-WORKDIR /usr/share/nginx/html/static
+# Create directory for static files
+RUN mkdir -p /usr/share/nginx/html/static
 
 # Expose port 80
 EXPOSE 80
 
-# Start Nginx
+# Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
