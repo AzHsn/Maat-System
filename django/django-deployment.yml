@@ -33,10 +33,10 @@ kind: Service
 metadata:
   name: python-svc
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 80
+      port: 8000
       targetPort: 80
   selector:
     app: django-app

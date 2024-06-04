@@ -1,32 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app
+  name: nginx-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-app
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-app
+        app: nginx
     spec:
       containers:
       - name: nginx
-        image: y:tag
+        image: docker.io/azhn/nginx-django-proxy:v1.0
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: static-data
+          mountPath: /app/static  # This should match the path in NGINX config
+      volumes:
+      - name: static-data
+        persistentVolumeClaim:
+          claimName: static-data-pvc
 ---
+# nginx-service.yaml
+
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
 spec:
   selector:
-    app: nginx-app
+    app: nginx
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer
+  type: LoadBalancer  # Exposing NGINX to the internet

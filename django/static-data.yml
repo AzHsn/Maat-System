@@ -4,8 +4,8 @@ metadata:
   name: static-data-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi  # Adjust the size as needed
-  storageClassName: managed-csi
+      storage: 5Gi  # Adjust the size as needed
+  storageClassName: azurefile-csi

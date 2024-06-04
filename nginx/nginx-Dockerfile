@@ -1,16 +1,12 @@
-# Dockerfile.nginx
+# Dockerfile
 
-# Use an official Nginx image as the base image
 FROM nginx:alpine
 
-# Copy custom Nginx configuration
+# Copy the NGINX configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy static files from Django
-COPY --from=django-app /app/static /usr/share/nginx/html
+# Copy static files (optional, if you want to include them during build)
+# COPY /path/to/local/staticfiles /path/to/staticfiles/
 
 # Expose port 80
 EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
