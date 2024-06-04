@@ -1,3 +1,5 @@
+# nginx-deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +21,7 @@ spec:
         - containerPort: 80
         volumeMounts:
         - name: static-data
-          mountPath: /app/static  # This should match the path in NGINX config
+          mountPath: /usr/share/nginx/html/static
       volumes:
       - name: static-data
         persistentVolumeClaim:
@@ -32,10 +34,10 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  selector:
-    app: nginx
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer  # Exposing NGINX to the internet
+  selector:
+    app: nginx

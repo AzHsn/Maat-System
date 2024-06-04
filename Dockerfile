@@ -17,6 +17,5 @@ COPY . /app/
 # install required packages
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
 EXPOSE 80
 CMD ["gunicorn", "project.wsgi", "--bind", "0.0.0.0:80"]
