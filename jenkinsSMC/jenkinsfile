@@ -12,10 +12,11 @@ pipeline {
                 script {
                     sh 'docker build . -t django-app:v3'
                     sh 'docker tag django-app:v3 azhn/django-app:v3'
-                    sh 'docker build -t nginx-django-proxy:v2 -f ./nginx/nginx-Dockerfile'
+                    sh 'docker build -t nginx-django-proxy:v2 ./nginx/ -f ./nginx/nginx-Dockerfile'
                     sh 'docker tag nginx-django-proxy:v2 azhn/nginx-django-proxy:v2'
                 }
             }
+        }
         stage('Push the Docker Image to DockerHUb') {
             steps {
                 script {
@@ -39,4 +40,3 @@ pipeline {
         }
         }
     }
-}
