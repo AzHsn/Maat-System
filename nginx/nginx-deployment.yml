@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker.io/azhn/nginx-django-proxy:v2
+        image: docker.io/azhn/nginx-django-proxy:v6.1
         ports:
         - containerPort: 80
         volumeMounts:
