@@ -1,17 +1,17 @@
 # Use an official NGINX base image
-# Use an official NGINX base image
 FROM nginx:alpine
 
-# Copy NGINX configuration file
 # Copy NGINX configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Create directory for static files
 RUN mkdir -p /usr/share/nginx/html/static
-COPY  static/* /usr/share/nginx/html/static
+
+# Copy the contents of the static directory into the container
+COPY static/. /usr/share/nginx/html/static/
+
 # Expose port 80
 EXPOSE 80
 
-# Start NGINX
 # Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
