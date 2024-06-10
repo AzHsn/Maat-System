@@ -18,7 +18,7 @@ spec:
           claimName: static-data-pvc
       containers:
       - name: django-app
-        image: docker.io/azhn/django-app:v3
+        image: docker.io/azhn/django-app:v4
         envFrom:
         - secretRef:
             name: db-secrets
