@@ -49,7 +49,7 @@ CI/CD: Jenkins Pipelines, GitHub Integration
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/ak4m410x01/Examination_Platform_API.git .
+   git clone git@github.com:AzHsn/Maat-System.git .
    ```
 
 2. run Terraform files
