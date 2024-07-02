@@ -3,7 +3,7 @@
 Project Overview:
 
 Implemented a comprehensive DevOps solution involving continuous deployment, infrastructure management, and automated workflows using Kubernetes and Jenkins.
-   <img src="./assets/images/Life-Sycle.jpg">
+   <img src="./assets/images/LIfe-sycle.jpg">
 </div>
 
 ## Key Responsibilities:
