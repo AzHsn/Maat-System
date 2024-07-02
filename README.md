@@ -54,7 +54,14 @@ CI/CD: Jenkins Pipelines, GitHub Integration
 
 2. run Terraform files
       ```bash
-      
+      # 1. Initialize Terraform:
+         terraform init
+      # 2. Validate the Configuration:
+         terraform validate
+      # 3. Plan the Deployment
+         terraform plan -out=tfplan
+      # 4. Apply the Deployment:
+         terraform apply tfplan
      ```
 3. run Kubernetes deployments files
    ```bash
